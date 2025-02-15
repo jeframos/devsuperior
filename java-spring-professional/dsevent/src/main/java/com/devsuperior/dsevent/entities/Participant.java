@@ -9,28 +9,30 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_category")
-public class Category {
+@Table(name = "tb_participant")
+public class Participant {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
+	private String name;
 	
-	@Column(columnDefinition = "TEXT")
-	private String description;
+	@Column(unique = true)
+	private String email;
 	
-	@OneToMany(mappedBy = "category")
+	@ManyToMany(mappedBy = "participants")
 	private Set<Activity> activities = new HashSet<>();
 	
-	public Category() {}
+	public Participant() {}
 
-	public Category(Integer id, String description) {
+	public Participant(Integer id, String name, String email) {
 		this.id = id;
-		this.description = description;
+		this.name = name;
+		this.email = email;
 	}
 
 	public Integer getId() {
@@ -41,12 +43,20 @@ public class Category {
 		this.id = id;
 	}
 
-	public String getDescription() {
-		return description;
+	public String getName() {
+		return name;
 	}
 
-	public void setDescription(String description) {
-		this.description = description;
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Set<Activity> getActivities() {
@@ -55,7 +65,7 @@ public class Category {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(description, id);
+		return Objects.hash(id);
 	}
 
 	@Override
@@ -66,8 +76,8 @@ public class Category {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		Category other = (Category) obj;
-		return Objects.equals(description, other.description) && Objects.equals(id, other.id);
+		Participant other = (Participant) obj;
+		return Objects.equals(id, other.id);
 	}
 
 }
