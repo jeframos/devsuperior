@@ -1,4 +1,4 @@
-# SISTEMA DSCOMMERCE
+# SISTEMA DSEVENT
 
 ## MODELO CONCEITUAL
 ![image](https://github.com/user-attachments/assets/81a7588b-7ee8-47eb-9a8f-31b7b5be8d8c)
