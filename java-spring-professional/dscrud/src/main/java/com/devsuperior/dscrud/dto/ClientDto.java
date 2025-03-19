@@ -2,6 +2,8 @@ package com.devsuperior.dscrud.dto;
 
 import java.time.LocalDate;
 
+import com.devsuperior.dscrud.entities.Client;
+
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.PastOrPresent;
 
@@ -29,6 +31,15 @@ public class ClientDto {
 		this.income = income;
 		this.birthDate = birthDate;
 		this.children = children;
+	}
+	
+	public ClientDto(Client entity) {
+		id = entity.getId();
+		name = entity.getName();
+		cpf = entity.getCpf();
+		income = entity.getIncome();
+		birthDate = entity.getBirthDate();
+		children = entity.getChildren();
 	}
 
 	public Long getId() {
