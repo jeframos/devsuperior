@@ -1,6 +1,8 @@
 package com.devsuperior.dscrud.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +23,12 @@ public class ClientController {
 	public ResponseEntity<ClientDto> findById(@PathVariable Long id){
 		ClientDto dto = service.findById(id);
 		return ResponseEntity.ok(dto);
+	}
+	
+	@GetMapping
+	public ResponseEntity<Page<ClientDto>> findAll(Pageable pageable){
+		Page<ClientDto> pageDto = service.findAll(pageable);
+		return ResponseEntity.ok(pageDto);
 	}
 
 }
