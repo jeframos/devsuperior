@@ -11,6 +11,9 @@ import com.devsuperior.dscrud.entities.Client;
 import com.devsuperior.dscrud.repositories.ClientRepository;
 import com.devsuperior.dscrud.service.exceptions.ResourceNotFoundException;
 
+import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
+
 @Service
 public class ClientService {
 	
@@ -39,6 +42,20 @@ public class ClientService {
 		return new ClientDto(entity);		
 	}
 	
+	@Transactional
+	public ClientDto update(Long id, ClientDto dto) {
+		try {
+			Client entity = repository.getReferenceById(id);
+			copyDtoToEntity(dto, entity);
+			entity = repository.save(entity);
+			return new ClientDto(entity);
+		}
+		catch(EntityNotFoundException e) {
+			throw new ResourceNotFoundException("Recurso não encontrado!");			
+		}
+		
+	}
+	
 	private void copyDtoToEntity(ClientDto dto, Client entity) {
 		entity.setName(dto.getName());
 		entity.setCpf(dto.getCpf());
@@ -46,5 +63,4 @@ public class ClientService {
 		entity.setBirthDate(dto.getBirthDate());
 		entity.setChildren(dto.getChildren());
 	}
-
 }
