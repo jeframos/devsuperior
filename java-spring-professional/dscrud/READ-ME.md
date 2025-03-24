@@ -12,6 +12,7 @@ Busca paginada de clientes
 
 Inserção de novo cliente
  - POST /clients
+```
 {
 "name": "Maria Silva",
 "cpf": "12345678901",
@@ -19,9 +20,11 @@ Inserção de novo cliente
 "birthDate": "1994-07-20",
 "children": 2
 }
+```
 
 Atualização de cliente
  - PUT /clients/1
+```
 {
 "name": "Maria Silvaaa",
 "cpf": "12345678901",
@@ -29,6 +32,7 @@ Atualização de cliente
 "birthDate": "1994-07-20",
 "children": 2
 }
+```
 
 Deleção de cliente
  - DELETE /clients/1
