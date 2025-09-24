@@ -59,7 +59,7 @@ public class Order {
 		this.id = id;
 	}
 
-	public Instant getMoment() {
+	public Instant getMoment(Instant now) {
 		return moment;
 	}
 
