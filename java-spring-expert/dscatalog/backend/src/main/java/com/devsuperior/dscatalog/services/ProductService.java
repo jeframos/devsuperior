@@ -1,8 +1,8 @@
 package com.devsuperior.dscatalog.services;
 
-import com.devsuperior.dscatalog.dto.CategoryDTO;
-import com.devsuperior.dscatalog.entities.Category;
-import com.devsuperior.dscatalog.repositories.CategoryRepository;
+import com.devsuperior.dscatalog.dto.ProductDTO;
+import com.devsuperior.dscatalog.entities.Product;
+import com.devsuperior.dscatalog.repositories.ProductRepository;
 import com.devsuperior.dscatalog.services.exceptions.DatabaseException;
 import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
@@ -19,58 +19,62 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
-public class CategoryService {
+public class ProductService {
 
     @Autowired
-    private CategoryRepository repository;
+    private ProductRepository repository;
 
 //    @Transactional(readOnly = true)
-//    public List<CategoryDTO> findAll(){
-//        List<Category> list = repository.findAll();
+//    public List<ProductDTO> findAll(){
+//        List<Product> list = repository.findAll();
 //        return list.stream()
-//                   .map(listCategory -> new CategoryDTO(listCategory))
+//                   .map(listProduct -> new ProductDTO(listProduct))
 //                   .collect(Collectors.toList());
 //    }
 
     @Transactional(readOnly = true)
-    public Page<CategoryDTO> findAllPaged(Pageable pageable) {
-        Page<Category> list = repository.findAll(pageable);
-        return list.map(listCategory -> new CategoryDTO(listCategory));
+    public Page<ProductDTO> findAllPaged(Pageable pageable) {
+        Page<Product> list = repository.findAll(pageable);
+        return list.map(listProduct -> new ProductDTO(listProduct));
     }
 
     @Transactional(readOnly = true)
-    public CategoryDTO findById(Long id){
-        Optional<Category> obj = repository.findById(id);
+    public ProductDTO findById(Long id){
+        Optional<Product> obj = repository.findById(id);
 
         /*
-           O método "obj.get()" obtém o os dados presentes dentro do Optional<Category>,
+           O método "obj.get()" obtém o os dados presentes dentro do Optional<Product>,
            e caso os dados sejam nulos, ele retorna uma exceção (erro 500).
         */
-        //Category entity = obj.get();
-        Category entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found!"));  // Essa msg de exceção será apresentada no log do terminal
-        return new CategoryDTO(entity);
+        //Product entity = obj.get();
+        Product entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found!"));  // Essa msg de exceção será apresentada no log do terminal
+        return new ProductDTO(entity, entity.getCategories());
     }
 
     @Transactional
-    public CategoryDTO insert(CategoryDTO dto) {
-        Category entity = new Category();
-        entity.setName(dto.getName());
+    public ProductDTO insert(ProductDTO dto) {
+        Product entity = new Product();
+
+        //entity.setName(dto.getName());
+
         entity = repository.save(entity);
-        return new CategoryDTO(entity);
+        return new ProductDTO(entity);
     }
 
     @Transactional
-    public CategoryDTO update(Long id, CategoryDTO dto) {
+    public ProductDTO update(Long id, ProductDTO dto) {
         /*
          O método "repository.getReferenceById(id)" possui o mecanismo para de instanciar um OBJ provisório com os dados,
          e nesse momento não é efetuada a consulta no BD.
          A consulta ao BD só acontece quando for executado o método "repository.save(entity)".
         */
         try {
-            Category entity = repository.getReferenceById(id);
-            entity.setName(dto.getName());
+            Product entity = repository.getReferenceById(id);
+
+            // entity.setName(dto.getName());
+
             entity = repository.save(entity);
-            return new CategoryDTO(entity);
+            return new ProductDTO(entity);
         }
         catch (EntityNotFoundException e) {
             throw new ResourceNotFoundException("Id not found " + id);
