@@ -16,6 +16,7 @@ public class Category implements Serializable {
     private Long id;
     private String Name;
 
+    //Configura a data no formato UTC
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant createdAt;
 
