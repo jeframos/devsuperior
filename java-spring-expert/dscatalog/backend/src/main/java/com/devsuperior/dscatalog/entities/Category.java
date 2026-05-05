@@ -4,7 +4,9 @@ import jakarta.persistence.*;
 
 import java.io.Serializable;
 import java.time.Instant;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 @Entity
 @Table(name = "tb_category")
@@ -22,6 +24,13 @@ public class Category implements Serializable {
 
     @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
     private Instant updatedAt;
+
+    //Como esse atributo é (muitos para muitos), é necessário efetuar o processo de criação de
+    //tabela auxiliar, porém como esse processo já foi criado no atributo 'categories' da classe
+    //Product.java, então basta apenas referenciar a tabela auxiliar criada, utilizando o
+    // atributo 'mappedBy' para indicar que a tabela auxiliar já foi criada na classe Product.java
+    @ManyToMany(mappedBy = "categories")
+    private Set<Product> products = new HashSet<>();
 
     public Category() {
     }
@@ -63,6 +72,10 @@ public class Category implements Serializable {
     @PreUpdate
     public void preUppdated() {
         updatedAt = Instant.now();
+    }
+
+    public Set<Product> getProducts() {
+        return products;
     }
 
     @Override
