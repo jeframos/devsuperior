@@ -6,6 +6,14 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.web.SecurityFilterChain;
 
+
+//Essa classe foi criada de forma temporária para exemplificar o uso do banco de dados, e não tem
+//relação com a segurança. Ela pode ser apagada depois.
+//
+//Foram implementadas as classes 'AuthorizationServerConfig' e 'ResourceServerConfig' para implementar
+//a parte de segurança na aplicação.
+
+/*
 @Configuration
 public class SecurityConfig {
 
@@ -18,3 +26,5 @@ public class SecurityConfig {
         return http.build();
     }
 }
+
+ */
