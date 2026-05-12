@@ -11,6 +11,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.dao.EmptyResultDataAccessException;
@@ -29,8 +30,12 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 import java.util.List;
 
+//Como o teste é unitario não existe a necessidade de validar o perfil de acesso
+//Então essa checagem de perfil de acesso será desabilitada com a
+//configuração 'excludeAutoConfiguration'
+
 //o "@WebMvcTest" carrega o contexto, porém somente da camada web (teste de unidade: controlador)
-@WebMvcTest(ProductResource.class)
+@WebMvcTest(value = ProductResource.class, excludeAutoConfiguration = {SecurityAutoConfiguration.class})
 public class ProductResourceTests {
 
     //Para efetuar testes na camada de Controle é necessário efetuar requests dos endpoints, e para efetuar essa ação é necessário
