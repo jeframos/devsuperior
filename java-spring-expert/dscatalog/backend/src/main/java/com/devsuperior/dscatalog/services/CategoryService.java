@@ -33,9 +33,11 @@ public class CategoryService {
 //    }
 
     @Transactional(readOnly = true)
-    public Page<CategoryDTO> findAllPaged(Pageable pageable) {
-        Page<Category> list = repository.findAll(pageable);
-        return list.map(listCategory -> new CategoryDTO(listCategory));
+    public List<CategoryDTO> findAll() {
+        List<Category> list = repository.findAll();
+        return list.stream()
+                .map(listCategory -> new CategoryDTO(listCategory))
+                .toList();
     }
 
     @Transactional(readOnly = true)
