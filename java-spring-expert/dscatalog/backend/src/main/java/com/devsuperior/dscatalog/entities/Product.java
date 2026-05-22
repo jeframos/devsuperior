@@ -1,5 +1,6 @@
 package com.devsuperior.dscatalog.entities;
 
+import com.devsuperior.dscatalog.projection.IdProjection;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
@@ -8,9 +9,11 @@ import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
+//Foi implementada a interface 'IdProjection<Long>' para que seja possível utilizar o método getId()
+// na classe 'Utils'.
 @Entity
 @Table(name = "tb_product")
-public class Product implements Serializable {
+public class Product implements IdProjection<Long> {
     private static final long serialVersionUID = 1L;
 
     @Id
@@ -44,6 +47,7 @@ public class Product implements Serializable {
         this.date = date;
     }
 
+    @Override
     public Long getId() {
         return id;
     }

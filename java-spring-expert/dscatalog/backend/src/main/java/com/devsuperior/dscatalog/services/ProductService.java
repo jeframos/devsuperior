@@ -9,6 +9,7 @@ import com.devsuperior.dscatalog.repositories.CategoryRepository;
 import com.devsuperior.dscatalog.repositories.ProductRepository;
 import com.devsuperior.dscatalog.services.exceptions.DatabaseException;
 import com.devsuperior.dscatalog.services.exceptions.ResourceNotFoundException;
+import com.devsuperior.dscatalog.util.Utils;
 import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -140,9 +141,15 @@ public class ProductService {
         List<Long> productIds = page.map(x -> x.getId()).toList();
 
         List<Product> entities = repository.searchProductsWithCategories(productIds);
+
+        //Foi adicionado o cast '(List<Product>)' para converter o tipo de dado do resultado do método
+        // 'Utils.replace()' para o tipo 'List<Product>'.
+        //Ele é um casting unsafe, ou seja, ele pode causar um erro em tempo de execução caso o tipo de
+        // dado do resultado do método 'Utils.replace()' não seja compatível com o tipo 'List<Product>'.
+        entities = (List<Product>) Utils.replace(page.getContent(), entities);
+
         List<ProductDTO> dtos = entities.stream().map(p -> new ProductDTO(p, p.getCategories())).toList();
 
-        Page<ProductDTO> dtoPage = new PageImpl<>(dtos, page.getPageable(), page.getTotalElements());
-        return dtoPage;
+        return new PageImpl<>(dtos, page.getPageable(), page.getTotalElements());
     }
 }
