@@ -70,6 +70,10 @@ public class UserService implements UserDetailsService {
         User entity = new User();
         copyDtoToEntity(dto, entity);
 
+        entity.getRoles().clear();
+        Role role = roleRepository.findByAuthority("ROLE_OPERATOR");
+        entity.getRoles().add(role);
+
         //A função 'passwordEncoder.encode()' efetua o processo para criptografar a senha.
         entity.setPassword(passwordEncoder.encode(dto.getPassword()));
         entity = repository.save(entity);
