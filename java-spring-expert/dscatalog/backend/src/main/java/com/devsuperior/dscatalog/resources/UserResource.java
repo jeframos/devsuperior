@@ -36,6 +36,15 @@ public class UserResource {
         return ResponseEntity.ok().body(dto);
     }
 
+    //Endpoint para o usuário autenticado acessar os seus próprios dados, ou seja, o "me"
+    // do "findMe()" significa "meu" ou "minha conta"
+    @PreAuthorize("hasAnyRole('ROLE_ADMIN', 'ROLE_OPERATOR')")
+    @GetMapping(value = "/me")
+    public ResponseEntity<UserDTO> findMe() {
+        UserDTO dto = service.findMe();
+        return ResponseEntity.ok().body(dto);
+    }
+
     @PostMapping
     public ResponseEntity<UserDTO> insert(@Valid @RequestBody UserInsertDTO dto) {
         UserDTO newDto = service.insert(dto);

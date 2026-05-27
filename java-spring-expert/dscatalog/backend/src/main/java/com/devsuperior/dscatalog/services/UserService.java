@@ -40,6 +40,8 @@ public class UserService implements UserDetailsService {
     @Autowired
     private RoleRepository roleRepository;
 
+    @Autowired
+    private AuthService authService;
 
     @Transactional(readOnly = true)
     public Page<UserDTO> findAllPaged(Pageable pageable) {
@@ -55,6 +57,13 @@ public class UserService implements UserDetailsService {
         //e caso os dados sejam nulos, ele retorna uma exceção (erro 500).
         //User entity = obj.get();
         User entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found!"));  // Essa msg de exceção será apresentada no log do terminal
+        return new UserDTO(entity);
+    }
+
+    //Esse método deve retornar os dados do usuário logado.
+    @Transactional(readOnly = true)
+    public UserDTO findMe(){
+        User entity = authService.authenticated();
         return new UserDTO(entity);
     }
 
@@ -112,18 +121,6 @@ public class UserService implements UserDetailsService {
         }
     }
 
-    private void copyDtoToEntity(UserDTO dto, User entity) {
-        entity.setFirstName(dto.getFirstName());
-        entity.setLastName(dto.getLastName());
-        entity.setEmail(dto.getEmail());
-
-        entity.getRoles().clear();
-        for (RoleDTO roleDto : dto.getRoles()) {
-            Role role = roleRepository.getReferenceById(roleDto.getId());
-            entity.getRoles().add(role);
-        }
-    }
-
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         List<UserDetailsProjection> result = repository.searchUserAndRolesByEmail(username);
@@ -137,5 +134,17 @@ public class UserService implements UserDetailsService {
             user.addRole(new Role(projection.getRoleId(), projection.getAuthority()));
         }
         return user;
+    }
+
+    private void copyDtoToEntity(UserDTO dto, User entity) {
+        entity.setFirstName(dto.getFirstName());
+        entity.setLastName(dto.getLastName());
+        entity.setEmail(dto.getEmail());
+
+        entity.getRoles().clear();
+        for (RoleDTO roleDto : dto.getRoles()) {
+            Role role = roleRepository.getReferenceById(roleDto.getId());
+            entity.getRoles().add(role);
+        }
     }
 }
