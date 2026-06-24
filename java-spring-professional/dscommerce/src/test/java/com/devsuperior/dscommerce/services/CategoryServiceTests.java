@@ -2,7 +2,7 @@ package com.devsuperior.dscommerce.services;
 
 import com.devsuperior.dscommerce.dto.CategoryDTO;
 import com.devsuperior.dscommerce.entities.Category;
-import com.devsuperior.dscommerce.factory.CategoryFactory;
+import com.devsuperior.dscommerce.tests.CategoryFactory;
 import com.devsuperior.dscommerce.repositories.CategoryRepository;
 import com.devsuperior.dscommerce.service.CategoryService;
 import org.junit.jupiter.api.Assertions;

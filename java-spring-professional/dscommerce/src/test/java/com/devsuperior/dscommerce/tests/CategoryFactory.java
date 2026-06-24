@@ -1,4 +1,4 @@
-package com.devsuperior.dscommerce.factory;
+package com.devsuperior.dscommerce.tests;
 
 import com.devsuperior.dscommerce.entities.Category;
 
