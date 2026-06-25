@@ -1,5 +1,6 @@
 package com.devsuperior.dscommerce.services;
 
+import com.devsuperior.dscommerce.dto.UserDTO;
 import com.devsuperior.dscommerce.entities.User;
 import com.devsuperior.dscommerce.projection.UserDetailsProjection;
 import com.devsuperior.dscommerce.repositories.UserRepository;
@@ -90,6 +91,33 @@ public class UserServiceTests {
 
         Assertions.assertThrows(UsernameNotFoundException.class, () -> {
             service.authenticated();
+        });
+    }
+
+    @Test
+    public void getMeShouldreturnUserDTOWhenUserAuthenticated() {
+
+        //O método Mockito.spy(service) cria um "espião" do objeto service,
+        // permitindo que você substitua o comportamento de métodos específicos para fins de teste.
+        //Devido o service utilizar @InjectMocks não é possivel definir o comportamento dele, como é feito com
+        //parametros do tipo @Mock, logo para conseguir definir o comportamento de um método dentro do service
+        // é necessário utilizar o método spy().
+        UserService spyUserService = Mockito.spy(service);
+        Mockito.doReturn(user).when(spyUserService).authenticated();
+
+        UserDTO result = spyUserService.getMe();
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(result.getEmail(), existingUsername);
+    }
+
+    @Test
+    public void getMeShouldThrowUsernameNotFoundExceptionWhenUserNotAuthenticated() {
+        UserService spyUserService = Mockito.spy(service);
+        Mockito.doThrow(UsernameNotFoundException.class).when(spyUserService).authenticated();
+
+        Assertions.assertThrows(UsernameNotFoundException.class, () -> {
+            UserDTO result = spyUserService.getMe();
         });
     }
 }
