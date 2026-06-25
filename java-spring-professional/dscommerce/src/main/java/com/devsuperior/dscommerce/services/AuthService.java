@@ -13,14 +13,6 @@ public class AuthService {
 
     public void validateSelfOrAdmin(long userId){
         User me = userService.authenticated();
-        //Esse if foi comentado para simplificar a validação nos testes unitarios,
-        // pois segundo o instrutor, estava complexo para testar.
-        //Então foram adicionados dois IFs para efetuar as validações.
-        //
-        //if (!me.hasRole("ROLE_ADMIN") && !me.getId().equals(userId)){
-        //    throw new ForbiddenException("Access denied!");
-        //}
-
         if (me.hasRole("ROLE_ADMIN")) {
             //Como esse método é do tipo void, ao adicionar o return ele vai
             // seguir o fluxo de execução normal do método, ou seja, vai sair do
