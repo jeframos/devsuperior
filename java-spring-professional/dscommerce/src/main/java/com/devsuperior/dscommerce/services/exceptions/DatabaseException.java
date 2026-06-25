@@ -1,4 +1,4 @@
-package com.devsuperior.dscommerce.service.exceptions;
+package com.devsuperior.dscommerce.services.exceptions;
 
 public class DatabaseException extends RuntimeException {
 	

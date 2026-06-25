@@ -1,7 +1,7 @@
-package com.devsuperior.dscommerce.service;
+package com.devsuperior.dscommerce.services;
 
 import com.devsuperior.dscommerce.entities.User;
-import com.devsuperior.dscommerce.service.exceptions.ForbiddenException;
+import com.devsuperior.dscommerce.services.exceptions.ForbiddenException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

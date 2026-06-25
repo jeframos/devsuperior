@@ -3,9 +3,9 @@ package com.devsuperior.dscommerce.services;
 import com.devsuperior.dscommerce.entities.User;
 import com.devsuperior.dscommerce.projection.UserDetailsProjection;
 import com.devsuperior.dscommerce.repositories.UserRepository;
-import com.devsuperior.dscommerce.service.UserService;
 import com.devsuperior.dscommerce.tests.UserDetailsFactory;
 import com.devsuperior.dscommerce.tests.UserFactory;
+import com.devsuperior.dscommerce.util.CustomUserUtil;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -19,6 +19,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @ExtendWith(SpringExtension.class)
 public class UserServiceTests {
@@ -28,6 +29,9 @@ public class UserServiceTests {
 
     @Mock
     private UserRepository repository;
+
+    @Mock
+    private CustomUserUtil userUtil;
 
     private String existingUsername, nonExistingUsername;
     private User user;
@@ -44,6 +48,9 @@ public class UserServiceTests {
 
         Mockito.when(repository.searchUserAndRolesByEmail(existingUsername)).thenReturn(userDetails);
         Mockito.when(repository.searchUserAndRolesByEmail(nonExistingUsername)).thenReturn(new ArrayList<>());
+
+        Mockito.when(repository.findByEmail(existingUsername)).thenReturn(Optional.of(user));
+        Mockito.when(repository.findByEmail(nonExistingUsername)).thenReturn(Optional.empty());
     }
 
     @Test
@@ -56,9 +63,33 @@ public class UserServiceTests {
 
     @Test
     public void loadUserByUsernameShouldThrowUsernameNotFoundExceptionWhenUserDoesNotExists() {
-
         Assertions.assertThrows(UsernameNotFoundException.class, () -> {
             service.loadUserByUsername(nonExistingUsername);
+        });
+    }
+
+    @Test
+    public void authenticatedShouldReturnUserWhenUserExists() {
+        //Definindo o comportamento do método getLoggedUserName() para retornar o username existente
+        //Como esse método é especifico apenas para authenticated(), ele é adicionado diretamente no
+        // caso de teste, sem precisar ser definido no setup()
+        Mockito.when(userUtil.getLoggedUserName()).thenReturn(existingUsername);
+
+        User result = service.authenticated();
+
+        Assertions.assertNotNull(result);
+        Assertions.assertEquals(result.getUsername(), existingUsername);
+    }
+
+    @Test
+    public void authenticatedShouldThrowUsernameNotFoundExceptionWhenUserDoesNotExists() {
+        //Definindo o comportamento do método getLoggedUserName() para retornar o username existente
+        //Como esse método é especifico apenas para authenticated(), ele é adicionado diretamente no
+        // caso de teste, sem precisar ser definido no setup()
+        Mockito.doThrow(ClassCastException.class).when(userUtil).getLoggedUserName();
+
+        Assertions.assertThrows(UsernameNotFoundException.class, () -> {
+            service.authenticated();
         });
     }
 }

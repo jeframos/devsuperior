@@ -1,4 +1,4 @@
-package com.devsuperior.dscommerce.service;
+package com.devsuperior.dscommerce.services;
 
 import com.devsuperior.dscommerce.dto.OrderItemDTO;
 import com.devsuperior.dscommerce.entities.*;
@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.devsuperior.dscommerce.dto.OrderDTO;
 import com.devsuperior.dscommerce.repositories.OrderRepository;
-import com.devsuperior.dscommerce.service.exceptions.ResourceNotFoundException;
+import com.devsuperior.dscommerce.services.exceptions.ResourceNotFoundException;
 
 import java.time.Instant;
 

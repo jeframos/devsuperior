@@ -2,7 +2,7 @@ package com.devsuperior.dscommerce.controllers.handlers;
 
 import java.time.Instant;
 
-import com.devsuperior.dscommerce.service.exceptions.ForbiddenException;
+import com.devsuperior.dscommerce.services.exceptions.ForbiddenException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.devsuperior.dscommerce.dto.CustomErrorDTO;
 import com.devsuperior.dscommerce.dto.ValidationErrorDTO;
-import com.devsuperior.dscommerce.service.exceptions.DatabaseException;
-import com.devsuperior.dscommerce.service.exceptions.ResourceNotFoundException;
+import com.devsuperior.dscommerce.services.exceptions.DatabaseException;
+import com.devsuperior.dscommerce.services.exceptions.ResourceNotFoundException;
 
 import jakarta.servlet.http.HttpServletRequest;
 
