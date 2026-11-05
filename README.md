@@ -1,70 +1,45 @@
-# DevSuperior - Workspace de Cursos do Prof. Nélio Alves
+# Workspace DevSuperior — Prof. Nélio Alves
 
-Bem-vindo à minha workspace de estudos! 🚀 Este repositório contém todos os projetos desenvolvidos durante os cursos realizados na plataforma **DevSuperior** do Prof. Nélio Alves.
+Este repositório reúne aplicações, desafios e materiais de apoio desenvolvidos nos cursos da DevSuperior. Os projetos estão separados por curso; cada aplicação tem seu próprio `pom.xml` e pode exigir uma versão específica do Java.
 
-## 📚 Estrutura de Cursos
+## Cursos e aplicações
 
-A workspace está organizada em dois cursos principais:
+### Java Spring Expert
 
-### 1. **Java Spring Expert** 
-Curso avançado de Spring Boot com foco em arquitetura e boas práticas.
+- [DSCatalog — backend](java-spring-expert/dscatalog/backend/README.md): catálogo de produtos com Spring Data JPA.
+- [DSCommerce — exercício de testes com Rest Assured](java-spring-expert/dscommerce-restassured/README.md).
+- [DSMovie — testes de serviços e cobertura JaCoCo](java-spring-expert/desafio-dsmovie-jacoco/README.md).
+- [DSMovie — desafio Rest Assured](java-spring-expert/desafio-dsmovie-restassured/README.md): inclui projeto-base e módulo de prática com Rest Assured.
+- [Movieflix — casos de uso](java-spring-expert/Desafio-Movieflix-Casos-de-Uso/README.md).
+- [Desafio de validação e segurança](java-spring-expert/Desafio-Validacao-e-Seguranca/README.md): API de cidades e eventos com validação e segurança.
+- [PostgreSQL e pgAdmin com Docker Compose](java-spring-expert/devsuperior-expert-postgres-pgAdmin/README.md): infraestrutura de apoio ao curso.
 
-#### Projetos:
-- **[DSCatalog Backend](./java-spring-expert/dscatalog/backend)** - API REST de catálogo de produtos com JPA e PostgreSQL
+### Java Spring Professional
 
----
+- [BDS Consultas](java-spring-professional/bdsconsultas-main/README.md): seis exercícios SQL (URI 2602, 2609, 2611, 2621, 2737 e 2990).
+- [Desafio de componentes e injeção de dependência](java-spring-professional/desafio-componentes-injecao-dependencia/README.md).
+- [Desafio Consulta de Vendas (DSMeta)](java-spring-professional/desafio-consulta-vendas/README.md).
+- [DSList — backend e material do módulo CI/CD](java-spring-professional/devsuperior-ci-cd/dslist-backend/README.md).
+- [DSCommerce](java-spring-professional/dscommerce/README.md).
+- [DSCrud](java-spring-professional/dscrud/README.md).
+- [DSEvent](java-spring-professional/dsevent/README.md).
+- [Spring Boot OAuth2/JWT](java-spring-professional/spring-boot-oauth2-jwt-demo/password-grant/README.md): exemplos de authorization server, resource server e versões distintas do Spring Boot.
 
-### 2. **Java Spring Professional**
-Curso profissional com diversos projetos práticos e desafios.
+### Java Spring Reference
 
-#### Projetos:
+- [DSLearn](java-spring-reference/dslearn/README.md): aplicação de referência para gestão de aprendizagem.
 
-- **[DSCommerce](./java-spring-professional/dscommerce)** - Sistema de e-commerce com gerenciamento de pedidos e produtos
-- **[DSCrud](./java-spring-professional/dscrud)** - Aplicação CRUD de gerenciamento de clientes
-- **[DSEvent](./java-spring-professional/dsevent)** - Sistema de gerenciamento de eventos
-- **[Desafio: Componentes e Injeção de Dependência](./java-spring-professional/desafio-componentes-injecao-dependencia)** - Desafio prático de DI e componentes Spring
-- **[BDS Consultas](./java-spring-professional/bdsconsultas-main)** - Coleção de soluções para problemas SQL/URI Online Judge
-  - URI 2602 - Desafio SQL
-  - URI 2609 - Desafio SQL
-  - URI 2611 - Desafio SQL
-  - URI 2621 - Desafio SQL
-  - URI 2737 - Desafio SQL
-  - URI 2990 - Desafio SQL
-- **[Spring Boot OAuth2 JWT Demo](./java-spring-professional/spring-boot-oauth2-jwt-demo)** - Implementação de OAuth2 com JWT e diferentes versões do Spring Boot
+## Executar um projeto
 
----
+Entre na pasta do projeto desejado e consulte seu `pom.xml` e README para conferir os requisitos e configurações. A maioria dos projetos disponibiliza o Maven Wrapper:
 
-## 🛠️ Tecnologias Utilizadas
+```powershell
+cd caminho\para\o\projeto
+.\mvnw.cmd spring-boot:run
+```
 
-- **Java 21** (projetos mais recentes) / Java 11 (projetos antigos)
-- **Spring Boot** (versões 2.7.x, 3.0.x, 3.1.x, 3.4.x)
-- **Spring Data JPA**
-- **PostgreSQL / H2 Database**
-- **Spring Security** (em projetos específicos)
-- **OAuth2 e JWT**
-- **Maven**
+Para rodar os testes, use `.\mvnw.cmd test`. Em sistemas Unix, use `./mvnw spring-boot:run` e `./mvnw test`. Projetos sem wrapper podem ser executados com Maven instalado (`mvn spring-boot:run` / `mvn test`).
 
----
+> Os projetos têm versões diferentes de Java, Spring Boot e bancos de dados. Use a versão indicada no `pom.xml` e no README do projeto; não há uma configuração única para toda a workspace.
 
-## 📖 Como Usar
-
-1. Cada projeto possui seu próprio **README.md** com instruções específicas
-2. Todos os projetos são projetos Maven e podem ser executados com:
-   ```bash
-   mvn spring-boot:run
-   ```
-3. Consulte o README individual de cada projeto para mais detalhes sobre funcionalidades, endpoints e configurações
-
----
-
-## 🎯 Próximos Passos
-
-- [ ] Expandir com mais cursos
-- [ ] Adicionar testes unitários e de integração
-- [ ] Documentar endpoints com Swagger
-- [ ] Adicionar Docker Compose para facilitar execução
-
----
-
-**Desenvolvido durante os cursos de Spring Boot do Prof. Nélio Alves na plataforma DevSuperior** 📚
-
+Para a relação organizada dos documentos, consulte o [índice de READMEs](INDICE_READMES.md). As orientações para manter a documentação ficam em [GUIA_MANUTENCAO.md](GUIA_MANUTENCAO.md).
