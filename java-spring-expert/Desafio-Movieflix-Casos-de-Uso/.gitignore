@@ -1,0 +1,27 @@
+# Ignore compiled Java classes
+*.class
+
+# Maven build output
+/target/
+
+# IntelliJ IDEA
+/.idea/
+*.iml
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# Maven wrapper and logs
+/.mvn/
+mvnw
+mvnw.cmd
+
+# Misc
+*.log
+*.tmp
+*.swp
+.DS_Store
+Thumbs.db
+

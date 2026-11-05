@@ -1,0 +1,18 @@
+O arquivo 'docker-compose.yml' é referente ao modulo abaixo:
+  - Java Spring Expert
+  
+  Sub modulo:
+    - Casos de uso, signup, finalização
+  
+  Aula:
+    - Executando o Postgres e pgAdmin com Docker Compose
+	
+Comandos para consultar o Container:
+  Para startar os containers
+  - docker-compose up -d
+  
+  Consultar os containers em execução
+  - docker ps [-a]
+  
+  Apagando containers
+  - docker rm <Informe os 3 primeiros caracteres do 'CONTAINER ID'>
