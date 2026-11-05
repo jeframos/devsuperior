@@ -14,3 +14,6 @@ INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 2);
 INSERT INTO tb_user_role (user_id, role_id) VALUES (3, 3);
 
 INSERT INTO tb_course (name, img_uri, img_gray_uri) VALUES ('Bootcamp HTML', 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRlNK8PI_jQ9uQ2OFx5MyYKhlJx5VBLlxR63cEb5nzi_29l9oxaYEsb_HI&s=10', 'https://www.uidm.in/wp-content/uploads/2020/09/is-there-any-future-of-digital-marketing.jpg');
+
+INSERT INTO tb_offer (edition, start_moment, end_moment, course_id) VALUES (1.0, TIMESTAMP WITH TIME ZONE '2026-11-06T00:00:00Z', TIMESTAMP WITH TIME ZONE '2027-11-06T00:00:00Z', 1);
+INSERT INTO tb_offer (edition, start_moment, end_moment, course_id) VALUES (2.0, TIMESTAMP WITH TIME ZONE '2026-12-06T00:00:00Z', TIMESTAMP WITH TIME ZONE '2027-12-06T00:00:00Z', 1);
