@@ -17,3 +17,7 @@ INSERT INTO tb_course (name, img_uri, img_gray_uri) VALUES ('Bootcamp HTML', 'ht
 
 INSERT INTO tb_offer (edition, start_moment, end_moment, course_id) VALUES (1.0, TIMESTAMP WITH TIME ZONE '2026-11-06T00:00:00Z', TIMESTAMP WITH TIME ZONE '2027-11-06T00:00:00Z', 1);
 INSERT INTO tb_offer (edition, start_moment, end_moment, course_id) VALUES (2.0, TIMESTAMP WITH TIME ZONE '2026-12-06T00:00:00Z', TIMESTAMP WITH TIME ZONE '2027-12-06T00:00:00Z', 1);
+
+INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id) VALUES ('Trilha HTML', 'Trilha principal do curso', 1, 'https://www.uidm.in/wp-content/uploads/2020/09/is-there-any-future-of-digital-marketing.jpg', 1, 1);
+INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id) VALUES ('Forum', 'Tire suas dúvidas', 2, 'https://www.uidm.in/wp-content/uploads/2020/09/is-there-any-future-of-digital-marketing.jpg', 2, 1);
+INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id) VALUES ('Lives', 'Lives exclusivas para a turma', 3, 'https://www.uidm.in/wp-content/uploads/2020/09/is-there-any-future-of-digital-marketing.jpg', 0, 1);
