@@ -25,3 +25,6 @@ INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id) 
 INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id) VALUES ('Introdução', 'Introdução ao curso', 1, 'https://www.uidm.in/wp-content/uploads/2020/09/is-there-any-future-of-digital-marketing.jpg', 1, null);
 INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id) VALUES ('HTML Básico', 'Aprenda o básico de HTML', 2, 'https://www.uidm.in/wp-content/uploads/2020/09/is-there-any-future-of-digital-marketing.jpg', 1, 1);
 INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id) VALUES ('HTML Avançado', 'Aprenda o avançado de HTML', 3, 'https://www.uidm.in/wp-content/uploads/2020/09/is-there-any-future-of-digital-marketing.jpg', 1, 2);
+
+INSERT INTO tb_enrollment (user_id, offer_id, enroll_moment, refund_moment, available, only_update) VALUES (1, 1, TIMESTAMP WITH TIME ZONE '2026-11-06T13:00:00Z', null, true, false);
+INSERT INTO tb_enrollment (user_id, offer_id, enroll_moment, refund_moment, available, only_update) VALUES (2, 1, TIMESTAMP WITH TIME ZONE '2026-11-06T13:00:00Z', null, true, false);
