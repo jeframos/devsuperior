@@ -4,6 +4,8 @@ import com.devsuperior.dslearn.entities.enums.ResourceType;
 import jakarta.persistence.*;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 @Entity
@@ -23,6 +25,9 @@ public class Resource implements Serializable {
     @ManyToOne
     @JoinColumn(name = "offer_id")
     private Offer offer;
+
+    @OneToMany(mappedBy = "resource")
+    private List<Section> sections = new ArrayList<>();
 
     public Resource() {}
 
@@ -86,6 +91,10 @@ public class Resource implements Serializable {
 
     public Offer getOffer() {
         return offer;
+    }
+
+    public List<Section> getSections() {
+        return sections;
     }
 
     @Override

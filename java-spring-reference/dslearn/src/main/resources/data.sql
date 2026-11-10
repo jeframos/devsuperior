@@ -21,3 +21,7 @@ INSERT INTO tb_offer (edition, start_moment, end_moment, course_id) VALUES (2.0,
 INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id) VALUES ('Trilha HTML', 'Trilha principal do curso', 1, 'https://www.uidm.in/wp-content/uploads/2020/09/is-there-any-future-of-digital-marketing.jpg', 1, 1);
 INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id) VALUES ('Forum', 'Tire suas dúvidas', 2, 'https://www.uidm.in/wp-content/uploads/2020/09/is-there-any-future-of-digital-marketing.jpg', 2, 1);
 INSERT INTO tb_resource (title, description, position, img_uri, type, offer_id) VALUES ('Lives', 'Lives exclusivas para a turma', 3, 'https://www.uidm.in/wp-content/uploads/2020/09/is-there-any-future-of-digital-marketing.jpg', 0, 1);
+
+INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id) VALUES ('Introdução', 'Introdução ao curso', 1, 'https://www.uidm.in/wp-content/uploads/2020/09/is-there-any-future-of-digital-marketing.jpg', 1, null);
+INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id) VALUES ('HTML Básico', 'Aprenda o básico de HTML', 2, 'https://www.uidm.in/wp-content/uploads/2020/09/is-there-any-future-of-digital-marketing.jpg', 1, 1);
+INSERT INTO tb_section (title, description, position, img_uri, resource_id, prerequisite_id) VALUES ('HTML Avançado', 'Aprenda o avançado de HTML', 3, 'https://www.uidm.in/wp-content/uploads/2020/09/is-there-any-future-of-digital-marketing.jpg', 1, 2);
